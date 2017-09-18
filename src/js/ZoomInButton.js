@@ -18,14 +18,14 @@ export default class ZoomInButton extends Component {
 
   render() {
     return (
-      <img id="zoomIn" src={image_zoomIn}
+      <img id='zoomIn' src={image_zoomIn}
         width='60' height='60'
         onClick={this.handleZoomInClick}
         style= {{
-          left: 30 + "px",
-          top: 30 + "px",
-          position: "absolute",
-          pointerEvents: "auto"
+          left: 30 + 'px',
+          top: 38 + 'px',
+          position: 'absolute',
+          pointerEvents: 'auto'
         }}
         alt=''
       />

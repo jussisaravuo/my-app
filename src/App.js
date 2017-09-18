@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import ZoomInButton from './js/ZoomInButton';
 import ZoomOutButton from './js/ZoomOutButton';
 import ZoomButtonsBg from './js/ZoomButtonsBg';
-import MapImage from './js/MapImage';
+import MapImage, { MAP_IMAGE_WIDTH, MAP_IMAGE_HEIGHT} from './js/MapImage';
 
 import './App.css';
-
-let mapOriginalWidth = 2579;
-let mapOriginalHeight = 1838;
 
 /*
  * 
@@ -15,24 +12,24 @@ let mapOriginalHeight = 1838;
  * @return {left, top, width, height} Returns the centralized {left, top, width, height}-values.
  */
 function getCentralizedMapImageValues(mapHolder) {
-  if (mapOriginalWidth / mapOriginalHeight < mapHolder.width / mapHolder.height) {
-    let mapImageHeight = (mapHolder.width / mapOriginalWidth) * mapOriginalHeight;
+  if (MAP_IMAGE_WIDTH / MAP_IMAGE_HEIGHT < mapHolder.width / mapHolder.height) {
+    let mapImageHeight = (mapHolder.width / MAP_IMAGE_WIDTH) * MAP_IMAGE_HEIGHT;
     return {
       left: 0, 
       top: parseInt((mapHolder.height - mapImageHeight) / 2, 10), 
       width: mapHolder.width, 
       height: mapImageHeight, 
-      multiplier: mapHolder.width / mapOriginalWidth
+      multiplier: mapHolder.width / MAP_IMAGE_WIDTH
     };
   }
   else {
-    let mapImageWidth = parseInt(mapHolder.height / mapOriginalHeight * mapOriginalWidth, 10);
+    let mapImageWidth = parseInt(mapHolder.height / MAP_IMAGE_HEIGHT * MAP_IMAGE_WIDTH, 10);
     return {
       left: parseInt((mapHolder.width - mapImageWidth) / 2, 10), 
       top: 0, 
       width: mapImageWidth, 
       height: mapHolder.height, 
-      multiplier: parseFloat((mapHolder.height / mapOriginalHeight).toFixed(2))
+      multiplier: parseFloat((mapHolder.height / MAP_IMAGE_HEIGHT).toFixed(2))
     };
   }
 }
@@ -114,8 +111,8 @@ class App extends Component {
     // Calculate new zoom-value.
     let multiplier_new = parseFloat((mapImage.multiplier * multiplier).toFixed(2));
 
-    let width_new = parseInt(multiplier_new * mapOriginalWidth, 10);
-    let height_new = parseInt(multiplier_new * mapOriginalHeight, 10);
+    let width_new = parseInt(multiplier_new * MAP_IMAGE_WIDTH, 10);
+    let height_new = parseInt(multiplier_new * MAP_IMAGE_HEIGHT, 10);
 
     // Make sure that the size of mapImage will fill the visible-area.
     let left_new;
@@ -133,15 +130,15 @@ class App extends Component {
 
     if (fit === 'width') {
       width_new = mapHolder.width;
-      height_new = parseInt((mapOriginalHeight / mapOriginalWidth) * mapHolder.width, 10);
-      multiplier_new = parseFloat((width_new / mapOriginalWidth).toFixed(2));
+      height_new = parseInt((MAP_IMAGE_HEIGHT / MAP_IMAGE_WIDTH) * mapHolder.width, 10);
+      multiplier_new = parseFloat((width_new / MAP_IMAGE_WIDTH).toFixed(2));
       left_new = 0;
       top_new = parseInt(center.y - procentualOffsetY * height_new, 10);
     }
     else if (fit === 'height') {
       height_new = mapHolder.height;
-      width_new = parseInt((mapOriginalWidth / mapOriginalHeight) * mapHolder.height, 10);
-      multiplier_new = parseFloat((height_new / mapOriginalHeight).toFixed(2));
+      width_new = parseInt((MAP_IMAGE_WIDTH / MAP_IMAGE_HEIGHT) * mapHolder.height, 10);
+      multiplier_new = parseFloat((height_new / MAP_IMAGE_HEIGHT).toFixed(2));
       left_new = parseInt(center.x - procentualOffsetX * width_new, 10);
       top_new = 0;
     }
@@ -197,19 +194,19 @@ class App extends Component {
     let mapHolder = this.state.mapHolder;
 
     let mapHolderStyle = {
-      left: mapHolder.left+"px",
-      top: mapHolder.top+"px",
-      width: mapHolder.width+"px",
-      height: mapHolder.height + "px",
-      position: "absolute",
+      left: mapHolder.left+'px',
+      top: mapHolder.top+'px',
+      width: mapHolder.width+'px',
+      height: mapHolder.height + 'px',
+      position: 'absolute',
       padding: `0px 0px 0px 0px`,
       overflow: 'hidden',
       backgroundColor: 'rgba(255,0,0,0.5)',
-      pointerEvents: "auto"
+      pointerEvents: 'auto'
     };
 
     return (
-      <div onChange={this.resize}>
+      <div>
         <div id='map-holder' style={mapHolderStyle}> 
           <MapImage left={mapImage.left} top={mapImage.top} width={mapImage.width} height={mapImage.height} mapPositionChange={this.handleMapPositionChange}/>
         </div>

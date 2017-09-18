@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import image_map from '../img/map.png';
 
+export let MAP_IMAGE_WIDTH = 2579;
+export let MAP_IMAGE_HEIGHT = 1838;
+
 export default class MapImage extends Component {
 
   constructor(props) {
@@ -73,7 +76,7 @@ export default class MapImage extends Component {
     let width = this.props.width;
     let height = this.props.height;
     return (
-      <img id = "map-image"
+      <img id = 'map-image'
         src = {image_map}
         width = {width} 
         height = {height} 
@@ -83,10 +86,10 @@ export default class MapImage extends Component {
         onMouseOut={this.handleMouseUp}
         onMouseLeave={this.handleMouseUp}
         style = {{
-          left: left + "px",
-          top: top + "px",
-          position: "absolute",
-          pointerEvents: "auto"
+          left: left + 'px',
+          top: top + 'px',
+          position: 'absolute',
+          pointerEvents: 'auto'
         }}
         alt=''
       />

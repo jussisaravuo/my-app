@@ -18,14 +18,14 @@ export default class ZoomOutButton extends Component {
 
   render() {
     return (
-      <img id="zoomOut" src={image_zoomOut}
+      <img id='zoomOut' src={image_zoomOut}
         width='60' height='60'
         onClick={this.handleZoomOutClick}
         style= {{
-          left: 30 + "px",
-          top: 102 + "px",
-          position: "absolute",
-          pointerEvents: "auto"
+          left: 30 + 'px',
+          top: 104 + 'px',
+          position: 'absolute',
+          pointerEvents: 'auto'
         }}
         alt=''
       />
