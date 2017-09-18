@@ -12,6 +12,8 @@ export default class ZoomOutButton extends Component {
 
   handleZoomOutClick(e) {
     this.props.MapZoomChange(MULTIPLIER);
+    e.stopPropagation();
+    e.preventDefault();
   }
 
   render() {
