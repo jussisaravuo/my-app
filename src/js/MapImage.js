@@ -18,6 +18,8 @@ export default class MapImage extends Component {
 
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
 
     this.handleEventsOfMapContent = this.handleEventsOfMapContent.bind(this);
@@ -45,14 +47,14 @@ export default class MapImage extends Component {
    * @param e - Event
    */
   handleMouseOut(e) {
-    this.handleEventsOfMapContent(e, 'up');
+    this.handleEventsOfMapContent(e, 'out');
   }
 
   /*
    * @param e - Event
    */
   handleMouseLeave(e) {
-    this.handleEventsOfMapContent(e, 'up');
+    this.handleEventsOfMapContent(e, 'leave');
   }
 
   /*
