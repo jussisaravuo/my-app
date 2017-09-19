@@ -6,6 +6,13 @@ export let MAP_IMAGE_HEIGHT = 1838;
 
 export default class MapImage extends Component {
 
+  /*
+   *  @param {function} mapPositionChange
+   *  @param {Number} left
+   *  @param {Number} top
+   *  @param {Number} width
+   *  @param {Number} height
+   */
   constructor(props) {
     super(props);
 
@@ -20,22 +27,45 @@ export default class MapImage extends Component {
     this.savedValues = false;
   }
 
+  /*
+   * @param e - Event
+   */
   handleMouseDown(e) {
     this.handleEventsOfMapContent(e, 'down');
   }
 
+  /*
+   * @param e - Event
+   */
   handleMouseUp(e) {
     this.handleEventsOfMapContent(e, 'up');
   }
 
+  /*
+   * @param e - Event
+   */
+  handleMouseOut(e) {
+    this.handleEventsOfMapContent(e, 'out');
+  }
+
+  /*
+   * @param e - Event
+   */
+  handleMouseLeave(e) {
+    this.handleEventsOfMapContent(e, 'leave');
+  }
+
+  /*
+   * @param e - Event
+   */
   handleMouseMove(e) {
     this.handleEventsOfMapContent(e, 'move');
   }
 
   /*
    *  Handle events of map-content.
-   *  @param e
-   *  @param eventType
+   *  @param e - Event
+   *  @param {String} eventType - down | move | up | out | leave
    *
    */
   handleEventsOfMapContent(e, eventType) {
@@ -54,7 +84,7 @@ export default class MapImage extends Component {
       };
       this.dragging = true;
     }
-    else if (this.dragging && (eventType === 'up' || eventType === 'pointerout' || eventType === 'pointerleave' || eventType === 'pointercancel' || eventType === 'lostpointercapture')) {
+    else if (this.dragging && (eventType === 'up' || eventType === 'out' || eventType === 'leave')) {
       this.dragging = false;
     }
     e.stopPropagation();
@@ -83,8 +113,8 @@ export default class MapImage extends Component {
         onMouseDown={this.handleMouseDown}
         onMouseMove={this.handleMouseMove}
         onMouseUp={this.handleMouseUp}
-        onMouseOut={this.handleMouseUp}
-        onMouseLeave={this.handleMouseUp}
+        onMouseOut={this.handleMouseOut}
+        onMouseLeave={this.handleMouseLeave}
         style = {{
           left: left + 'px',
           top: top + 'px',

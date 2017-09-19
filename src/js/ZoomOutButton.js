@@ -5,11 +5,17 @@ let MULTIPLIER = 0.95;
 
 export default class ZoomOutButton extends Component {
 
+  /*
+   * @param {function} MapZoomChange
+   */
   constructor(props) {
     super(props);
     this.handleZoomOutClick = this.handleZoomOutClick.bind(this);
   }
 
+  /*
+   * @param e - Event
+   */
   handleZoomOutClick(e) {
     this.props.MapZoomChange(MULTIPLIER);
     e.stopPropagation();

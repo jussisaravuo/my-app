@@ -5,11 +5,17 @@ let MULTIPLIER = 1.05;
 
 export default class ZoomInButton extends Component {
 
+  /*
+   * @param {function} MapZoomChange
+   */
   constructor(props) {
     super(props);
     this.handleZoomInClick = this.handleZoomInClick.bind(this);
   }
 
+  /*
+   * @param e - Event
+   */
   handleZoomInClick(e) {
     this.props.MapZoomChange(MULTIPLIER);
     e.stopPropagation();

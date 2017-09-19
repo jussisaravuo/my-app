@@ -7,8 +7,8 @@ import MapImage, { MAP_IMAGE_WIDTH, MAP_IMAGE_HEIGHT} from './js/MapImage';
 import './App.css';
 
 /*
- * 
  * @param {left, top, width, height} mapHolder
+ *
  * @return {left, top, width, height} Returns the centralized {left, top, width, height}-values.
  */
 function getCentralizedMapImageValues(mapHolder) {
@@ -36,6 +36,9 @@ function getCentralizedMapImageValues(mapHolder) {
 
 class App extends Component {
 
+  /*
+   * @param props
+   */
   constructor(props) {
     super(props);
 
@@ -59,6 +62,10 @@ class App extends Component {
     };
   }
 
+  /*
+   * @param {Number} x - Position x.
+   * @param {Number} y - Position y.
+   */
   handleMapPositionChange(x, y) {
 
     // Restrict (x,y)-position of mapImageHolder so that it's edges won't arrive into the visible-area.
@@ -93,7 +100,7 @@ class App extends Component {
   }
 
   /*
-   * @param {int} multiplier - If multiplier is +1 it mean zoom in. If multiplier is -1 it mean zoom out.
+   * @param {Number} multiplier - If multiplier is +1 it mean zoom in. If multiplier is -1 it mean zoom out.
    */
   handleMapZoomChange(multiplier) {
     //console.log('handleMapZoomChange('+multiplier+')');
