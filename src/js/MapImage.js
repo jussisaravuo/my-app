@@ -45,14 +45,14 @@ export default class MapImage extends Component {
    * @param e - Event
    */
   handleMouseOut(e) {
-    this.handleEventsOfMapContent(e, 'out');
+    this.handleEventsOfMapContent(e, 'up');
   }
 
   /*
    * @param e - Event
    */
   handleMouseLeave(e) {
-    this.handleEventsOfMapContent(e, 'leave');
+    this.handleEventsOfMapContent(e, 'up');
   }
 
   /*
